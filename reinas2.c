@@ -18,7 +18,7 @@
 #include <stdlib.h>
 
 // Constantes simbólicas
-
+int listo;
 #define TRUE  1
 #define FALSE 0
 
@@ -86,32 +86,39 @@ void colocarReina (int fila, int reinas[], int n)
 {
   int ok = FALSE;
 
-  if (fila<n) {
+  if (fila<n && listo==0) 
+  {
 
-     // Quedan reinas por colocar
+    // Quedan reinas por colocar
 
-     for (reinas[fila]=0; reinas[fila]<n; reinas[fila]++) {
+    for (reinas[fila]=0; reinas[fila]<n; reinas[fila]++) 
+    {
+      // Comprobamos si la posición 
+      // de la reina actual es válida
+      
+      if (comprobar(fila,reinas,n) && listo==0) 
+      {
 
-         // Comprobamos si la posición 
-         // de la reina actual es válida
+        // Si es así, intentamos colocar
+        // las reinas restantes
+        mostrarTablero(reinas,n);
+        colocarReina (fila+1, reinas, n);
 
-         if (comprobar(fila,reinas,n)) {
-
-            // Si es así, intentamos colocar
-            // las reinas restantes
-
-            colocarReina (fila+1, reinas, n);
-         }
-     } 
+      }
+    } 
   
-  } else {
-
-     // No quedan reinas por colocar (solución)
-
-     mostrarTablero(reinas,n);
+  } 
+  else
+  {
+    // No quedan reinas por colocar (solución)
+    
+    mostrarTablero(reinas,n);
+    listo=1;
+    printf("\nEsto es todo amigos\n");
+    return;
   }
 
-  return ok;
+  //return ok;
 }
 
 
@@ -139,6 +146,7 @@ void main (int argc, char *argv[])
   int *reinas;  // Vector con las posiciones de las reinas de cada fila
   int nreinas;  // Número de reinas
   int i;        // Contador
+  listo=0;
 
 
   // Leer número de reinas 
