@@ -17,10 +17,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 // Constantes simbólicas
 int listo;
-#define TRUE  1
-#define FALSE 0
+
 
 
 // Comprobar si una reina está bien colocada
@@ -42,9 +42,9 @@ int comprobar (int fila, int reinas[], int n)
   for (i=0; i<fila; i++)
       if (  ( reinas[i]==reinas[fila] )                      // Misma columna
          || ( abs(fila-i) == abs(reinas[fila]-reinas[i]) ) ) // Misma diagonal
-         return FALSE;
+         return (0);
 
-  return TRUE;
+  return (1);
 }
 
 
@@ -84,13 +84,11 @@ void mostrarTablero (int reinas[], int n)
 
 void colocarReina (int fila, int reinas[], int n)
 {
-  int ok = FALSE;
+  int ok = 0;
 
   if (fila<n && listo==0) 
   {
-
     // Quedan reinas por colocar
-
     for (reinas[fila]=0; reinas[fila]<n; reinas[fila]++) 
     {
       // Comprobamos si la posición 
@@ -152,7 +150,7 @@ void main (int argc, char *argv[])
   // Leer número de reinas 
   // (parámetro del programa)
 
-  nreinas = -1;
+  
 
   if (argc==2) 
      nreinas = atoi(argv[1]);
@@ -160,29 +158,30 @@ void main (int argc, char *argv[])
 
   // Colocar las reinas en el tablero
 
-  if (nreinas>0) {
+  if (nreinas>0) 
+  {
 
-      // Crear vector dinámicamente
+    // Crear vector dinámicamente
 
-      reinas = (int*) malloc ( nreinas*sizeof(int) );
+    reinas = (int*) malloc ( nreinas*sizeof(int) );
 
-      // Inicializar vector:
-      // (inicialmente, ninguna reina está colocada)
+    // Inicializar vector:
+    // (inicialmente, ninguna reina está colocada)
 
-      for (i=0; i<nreinas; i++)
-          reinas[i] = -1;
+    for (i=0; i<nreinas; i++)
+        reinas[i] = -1;
 
-      // Colocar reinas (algoritmo recursivo)
+    // Colocar reinas (algoritmo recursivo)
 
-      colocarReina(0,reinas,nreinas);
+    colocarReina(0,reinas,nreinas);
 
-      // Liberar memoria
+    // Liberar memoria
 
-      free (reinas);
+    free (reinas);
   
-  } else {
-
-      mostrarAyuda(argv[0]);
-
+  }
+  else
+  {
+    mostrarAyuda(argv[0]);
   }
 }
