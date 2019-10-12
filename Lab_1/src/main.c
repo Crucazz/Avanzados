@@ -30,6 +30,7 @@ void main (int argc, char *argv[])
 
 	int* colocada=(int *)malloc(sizeof(int)*2);
     // Se crea la la ciudad segun el tamaño ingresado
+    //ademas se crea una matriz extra para ir almacenando la mejor opcion
 	int **ciudad = (int **)malloc(sizeof(int*)*ejeX);
 	int **mejorCiudad = (int **)malloc(sizeof(int*)*ejeX);
 	for(int i=0; i<ejeX; i++)
@@ -38,9 +39,6 @@ void main (int argc, char *argv[])
 		mejorCiudad[i]=(int *)malloc(sizeof(int)*ejeY);
 	}
 
-
-	//ejeX=i
-	//ejeY=j
 
 	// Llena la ciudad de nada
 	for(int i=0; i<ejeX; i++)
@@ -51,16 +49,17 @@ void main (int argc, char *argv[])
 			ciudad[i][j]=0;
 		}
 	}
-	colocada[0]=0;
-	colocada[1]=0;
 
+	colocada[0]=0; //utilizada para comprobar si se a cumplido la cantidad de sucursales macimas en la ciudad
+	colocada[1]=0; //utilizada para contar la cantidad maxima de sucursales colocadas en la ciudad
 
+	//recursion utilizando backtracking
     backtracking(ciudad,mejorCiudad,ejeX,ejeY,0,0,0,sucursales,colocada);
-
+    /*
     #ifdef DEBUG
 		printCurrent(mejorCiudad,ejeX ,ejeY);
 	#endif
-
+	*/
 
 	//Liberacion de memoria
     for(int i=0; i<ejeX; i++) 

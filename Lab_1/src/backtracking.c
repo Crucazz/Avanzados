@@ -4,6 +4,12 @@
 #include "../inc/debug.h"
 #include "../inc/colors.h"
 
+/*
+Funcion que copia la matriz ingresada en el primer argumento, a la matriz del segundo argumento
+Entrada: entero doble puntero, entero doble puntero, entero, entero
+Salida: ----
+O(n^2)	
+*/
 void guardar(int* ciudad[], int* mejorCiudad[] ,int ejeX,int ejeY)
 {
 	for(int j=0; j<ejeY; j++)
@@ -15,6 +21,13 @@ void guardar(int* ciudad[], int* mejorCiudad[] ,int ejeX,int ejeY)
 	}
 }
 
+/*
+Funcion que comprueba si se puede colocar la sucursal, segun las reglan planteadas en el
+enunciado, tales como la condicional de no estar en la misma vertical, horizontal y diagonal
+Entrada: entero doble puntero,entero, entero, entero, entero
+Salida: entero
+O(n^2)	
+*/
 int comprobar(int* ciudad[],int ejeX,int ejeY,int x,int y)
 {
 
@@ -51,7 +64,8 @@ int comprobar(int* ciudad[],int ejeX,int ejeY,int x,int y)
 
 
 /*
-Descripcion: Colocación de una sucursal en la ciudad
+recursion utilizando el metodo de backtracking para ir posicionando las sucursales en la ciudad,
+
  ---------------------------
 Parámetros:
 	ciudad   - Fila de la reina que queremos colocar
