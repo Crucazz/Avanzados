@@ -1,3 +1,11 @@
+/*
+	Felipe Villalobos Padilla
+	20.139.310-8
+	Algoritmos Avanzados
+	Laboratorio 1 Backtracking 
+	Enunciado de la ciudad y las sucursales
+*/
+
 #ifndef BACKTRACKING_H
 #define BACKTRACKING_H
 

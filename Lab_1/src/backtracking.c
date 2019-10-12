@@ -1,12 +1,24 @@
+/*
+	Felipe Villalobos Padilla
+	20.139.310-8
+	Algoritmos Avanzados
+	Laboratorio 1 Backtracking 
+	Enunciado de la ciudad y las sucursales
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../inc/backtracking.h"
 #include "../inc/debug.h"
-#include "../inc/colors.h"
+#include "../inc/colors.h"	
 
 /*
 Funcion que copia la matriz ingresada en el primer argumento, a la matriz del segundo argumento
-Entrada: entero doble puntero, entero doble puntero, entero, entero
+Entrada: 
+	ciudad[entero doble puntero]: matriz que se quiere copiar
+	mejorCiudad[entero doble puntero]: matriz donde se copiara la matriz anterior
+	ejeX[entero]: Tamaño del eje X de la matriz
+	ejeY[entero]: Tamaño del eje Y de la matriz
 Salida: ----
 O(n^2)	
 */
@@ -24,8 +36,14 @@ void guardar(int* ciudad[], int* mejorCiudad[] ,int ejeX,int ejeY)
 /*
 Funcion que comprueba si se puede colocar la sucursal, segun las reglan planteadas en el
 enunciado, tales como la condicional de no estar en la misma vertical, horizontal y diagonal
-Entrada: entero doble puntero,entero, entero, entero, entero
-Salida: entero
+Entrada:
+	ciudad[entero doble puntero]: matriz que representa la ciudad
+	ejeX[entero]: Tamaño del eje X de la matriz
+	ejeY[entero]: Tamaño del eje Y de la matriz
+	x[entero]: posicion en el eje X que se busca comparar
+	y[entero]: posicion en el eje Y que se busca comparar
+Salida: entero	-0: en caso de que se cumpla alguna de las restriccion
+				-1: en caso de que no se cumpla ninguna restriccion
 O(n^2)	
 */
 int comprobar(int* ciudad[],int ejeX,int ejeY,int x,int y)
@@ -66,22 +84,29 @@ int comprobar(int* ciudad[],int ejeX,int ejeY,int x,int y)
 /*
 recursion utilizando el metodo de backtracking para ir posicionando las sucursales en la ciudad,
 
- ---------------------------
-Parámetros:
-	ciudad   - Fila de la reina que queremos colocar
-	mejorCiudad - Vector con las posiciones de las reinas
-	ejeX      - Número de reinas
-	ejeY      - Número de reinas
-	x      - Número de reinas
-	y      - Número de reinas
-	sucActaul      - Número de sucursales en actuales en la ciudad
-	sucMaximas      - Número maximo de sucursales posibles en la ciudad
+Entrada:
+	ciudad[entero doble puntero]: matriz que representa la ciudad
+	mejorCiudad[entero doble puntero]: matriz que guardara la ciudad con mayor cantidad de sucursales
+	ejeX[entero]: Tamaño del eje X de la matriz
+	ejeY[entero]: Tamaño del eje Y de la matriz
+	x[entero]: posicion actual en X que se esta revisando en el tablero, utilizado para recorrer la matriz de la ciudad
+	y[entero]: posicion actual en Y que se esta revisando en el tablero, utilizado para recorrer la matriz de la ciudad
+	sucActaul[entero]: Número de sucursales en actuales en la ciudad
+	sucMaximas[entero]: Número maximo de sucursales posibles en la ciudad
+	colocada[entero puntero]: -en 0: guarda una bandera que se activa cuando se coloca la maxima cantidad posible de sucursales en la ciudad, permitiendo ir acabando con los llamados de la funcion 
+							  -en 1: guarda el mayor numero de sucursales  puesta hasta el momento en la ciudad
 
+Salida:-----
+O(n^n)	
 */
 void backtracking(int* ciudad[], int* mejorCiudad[], int ejeX, int ejeY, int x, int y, int sucActual, int sucMaximas, int* colocada)
 {
 	int ok = 0;
-	if(sucActual != sucMaximas && colocada[0]==0)
+
+	if(colocada[0]==1)
+		return;
+
+	if(sucActual != sucMaximas)
 	{
 		for(int j=y; j<ejeY; j++)
 		{
@@ -94,22 +119,22 @@ void backtracking(int* ciudad[], int* mejorCiudad[], int ejeX, int ejeY, int x, 
 					#ifdef DEBUG
 						printCurrent(ciudad,ejeX ,ejeY);
 					#endif
-
+					// con la nueva sucursal
+					// la ciudad actual, ¿tiene mas sucursales que la mejor ciudad hasta ahora?
 					if(sucActual+1>colocada[1])
 					{
 						guardar(ciudad,mejorCiudad,ejeX,ejeY);
 						colocada[1]=sucActual+1;
 					}
 					backtracking(ciudad,mejorCiudad,ejeX,ejeY,0,j+1,sucActual+1,sucMaximas,colocada);
-					//dado este punto se retorno, por lo tanto se eliminara la accion hecha
+					//dado este punto se realizo el retorno, por lo tanto se eliminara la accion hecha
 					ciudad[i][j]=0;
 
 				}
 				//en caso de que se encontrara la solucion
 				//empezara a cortar las recursiones.
 				if(colocada[0]==1)
-					return;
-				
+					return;				
 			}
 		}
 
@@ -121,7 +146,5 @@ void backtracking(int* ciudad[], int* mejorCiudad[], int ejeX, int ejeY, int x, 
 		colocada[0]=1;
 		guardar(ciudad,mejorCiudad,ejeX,ejeY);
 		return;
-  }
-
-  //return ok;
+  	}
 }

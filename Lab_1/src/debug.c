@@ -1,3 +1,11 @@
+/*
+	Felipe Villalobos Padilla
+	20.139.310-8
+	Algoritmos Avanzados
+	Laboratorio 1 Backtracking 
+	Enunciado de la ciudad y las sucursales
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../inc/backtracking.h"
@@ -8,7 +16,7 @@
 Funcion que imprime la matriz ingresada por argumento, junto con el tamañano de esta
 Entrada: entero doble puntero, entero, entero
 Salida: ----
-O(n**2)	
+O(n^2)	
 */
 
 void printCurrent(int* ciudad[], int ejeX, int ejeY)

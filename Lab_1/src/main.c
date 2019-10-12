@@ -3,7 +3,7 @@
 	20.139.310-8
 	Algoritmos Avanzados
 	Laboratorio 1 Backtracking 
-	Enunciado 1
+	Enunciado de la ciudad y las sucursales
 */
 
 #include <stdio.h>
@@ -55,11 +55,44 @@ void main (int argc, char *argv[])
 
 	//recursion utilizando backtracking
     backtracking(ciudad,mejorCiudad,ejeX,ejeY,0,0,0,sucursales,colocada);
-    /*
-    #ifdef DEBUG
-		printCurrent(mejorCiudad,ejeX ,ejeY);
-	#endif
-	*/
+
+    //escritura del archivo de salida
+    FILE *salida;
+	salida = fopen( "salida.out", "w" );
+
+	//guardar cantidad de sucursales
+	fprintf(salida,"%d" , colocada[1]);
+	fprintf(salida,"%s" ,"\n" );
+
+	//lista con las coordenadas de las sucursales
+	for(int j=0; j<ejeY; j++)
+	{
+		for(int i=0; i<ejeX; i++)
+		{
+			if(mejorCiudad[i][j]!=0)
+			{
+				fprintf(salida,"%d" , i);
+				fprintf(salida,"%s" ,"-" );
+				fprintf(salida,"%d" , j);
+				fprintf(salida,"%s" ," || " );
+			}
+		}
+	}
+	fprintf(salida,"%s" ,"\n" );
+
+	//representacion grafica de la ciudad
+	for(int j=0; j<ejeY; j++)
+	{
+		for(int i=0; i<ejeX; i++)
+		{
+			if(mejorCiudad[i][j]==0)
+				fprintf(salida,"%s" ," _ " );
+			else
+				fprintf(salida,"%s" ," X " );
+		}
+		fprintf(salida,"%s" ,"\n" );
+	}
+	fclose(salida);
 
 	//Liberacion de memoria
     for(int i=0; i<ejeX; i++) 
