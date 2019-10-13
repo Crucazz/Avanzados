@@ -23,10 +23,10 @@ int main (int argc, char *argv[])
 
 	entrada = fopen( argv[1], "r" );
 	if( entrada )
-		printf( "creado (ABIERTO)\n" );
+		printf( "\n" );
 	else
 	{
-		printf( "Error (NO ABIERTO)\n" );
+		printf( "Archivo no existe, compuebe si esta bien ingreado el nombre, o si existe.\n" );
 		return 1;
 	}
 
