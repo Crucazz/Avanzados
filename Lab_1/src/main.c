@@ -14,12 +14,25 @@
 
 
 
-void main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 	int sucursales; 	// Cantidad de sucursales maximos
+	int ejeX, ejeY;		// Tamaño de la ciudad
 
-	int ejeX =atoi(argv[1]);
-	int ejeY =atoi(argv[2]);
+	FILE *entrada;
+
+	entrada = fopen( argv[1], "r" );
+	if( entrada )
+		printf( "creado (ABIERTO)\n" );
+	else
+	{
+		printf( "Error (NO ABIERTO)\n" );
+		return 1;
+	}
+
+	//obtencion del tamaño de la matriz
+	fscanf(entrada, "%d", &ejeX);
+	fscanf(entrada, "%d", &ejeY);
 	
 
 	//se queda con el minimo tamaño entre ancho y alto
@@ -27,6 +40,7 @@ void main (int argc, char *argv[])
 		sucursales = ejeY;
 	else
 		sucursales = ejeX;
+
 
 	int* colocada=(int *)malloc(sizeof(int)*2);
     // Se crea la la ciudad segun el tamaño ingresado
@@ -53,8 +67,26 @@ void main (int argc, char *argv[])
 	colocada[0]=0; //utilizada para comprobar si se a cumplido la cantidad de sucursales macimas en la ciudad
 	colocada[1]=0; //utilizada para contar la cantidad maxima de sucursales colocadas en la ciudad
 
-	//recursion utilizando backtracking
-    backtracking(ciudad,mejorCiudad,ejeX,ejeY,0,0,0,sucursales,colocada);
+
+
+
+	//obtencion si existen sucursales pre-dispuestas
+	int cantSucursales,nuevaCoordX, nuevaCoordY;
+	fscanf(entrada, "%d", &cantSucursales);		
+
+	for(int i=0; i<cantSucursales; i++)
+	{
+		fscanf(entrada, "%d", &nuevaCoordX);
+		fscanf(entrada, "%d", &nuevaCoordY);
+		ciudad[nuevaCoordX][nuevaCoordY]=1;
+		colocada[1]=colocada[1]+1;
+	}
+
+	guardar(ciudad,mejorCiudad,ejeX,ejeY);
+
+
+	//recursion utilizando backtracking	
+    backtracking(ciudad,mejorCiudad,ejeX,ejeY,0,0,colocada[1],sucursales,colocada);
 
     //escritura del archivo de salida
     FILE *salida;
@@ -92,6 +124,7 @@ void main (int argc, char *argv[])
 		}
 		fprintf(salida,"%s" ,"\n" );
 	}
+	fclose(entrada);
 	fclose(salida);
 
 	//Liberacion de memoria
@@ -102,5 +135,6 @@ void main (int argc, char *argv[])
 	}
 	free(ciudad);
 	free(mejorCiudad);
+	return 0;
 	
 }
