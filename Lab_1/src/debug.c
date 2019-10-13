@@ -85,10 +85,10 @@ void printBoard(int* ciudad[], int ejeX, int ejeY)
 		#endif
 	}
 	#ifdef LINUX
-	printf(RESET_COLOR""CYAN_T"╗\n"RESET_COLOR);
+		printf(RESET_COLOR""CYAN_T"╗\n"RESET_COLOR);
 	#endif
 	#ifdef WINDOWS
-			printf(RESET_COLOR""CYAN_T"*\n"RESET_COLOR);
+		printf(RESET_COLOR""CYAN_T"*\n"RESET_COLOR);
 	#endif
 
 
@@ -96,12 +96,18 @@ void printBoard(int* ciudad[], int ejeX, int ejeY)
 
 	for(int j=0; j<ejeY; j++)
 	{
-		printf(RESET_COLOR"\t\t"CYAN_T"║"RESET_COLOR);
+		#ifdef LINUX
+			printf(RESET_COLOR"\t\t"CYAN_T"║"RESET_COLOR);
+		#endif
+		#ifdef WINDOWS
+			printf(RESET_COLOR"\t\t"CYAN_T"|"RESET_COLOR);
+		#endif
+		
 		for(int i=0; i<ejeX; i++)
 		{
 			#ifdef LINUX
 				if(ciudad[i][j]!=0)
-					printf(RESET_COLOR" "ROJO_T"x "RESET_COLOR);	
+					printf(RESET_COLOR" "ROJO_T"X "RESET_COLOR);	
 				else
 					printf(RESET_COLOR" "VERDE_T"_ "RESET_COLOR);
 			#endif
@@ -109,9 +115,9 @@ void printBoard(int* ciudad[], int ejeX, int ejeY)
 			#ifdef WINDOWS
 				if(ciudad[i][j]!=0)
 
-					printf(RESET_COLOR" "ROJO_T"X"RESET_COLOR);	
+					printf(RESET_COLOR" "ROJO_T"X "RESET_COLOR);	
 				else
-					printf(RESET_COLOR" "VERDE_T"_"RESET_COLOR);
+					printf(RESET_COLOR" "VERDE_T"_ "RESET_COLOR);
 			#endif				
 			
 		}
@@ -123,11 +129,12 @@ void printBoard(int* ciudad[], int ejeX, int ejeY)
 		#endif
 	}
 
+	//Ultima Barra
 	#ifdef LINUX
-	printf(RESET_COLOR""CYAN_T"\t\t╚"RESET_COLOR);
+		printf(RESET_COLOR""CYAN_T"\t\t╚"RESET_COLOR);
 	#endif
 	#ifdef WINDOWS
-			printf(RESET_COLOR""CYAN_T"\t\t*"RESET_COLOR);
+		printf(RESET_COLOR""CYAN_T"\t\t*"RESET_COLOR);
 	#endif
 
 	for(int i=0; i<ejeX; i++)
