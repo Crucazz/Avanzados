@@ -91,7 +91,7 @@ Entrada:
 	ejeY[entero]: Tamaño del eje Y de la matriz
 	x[entero]: posicion actual en X que se esta revisando en el tablero, utilizado para recorrer la matriz de la ciudad
 	y[entero]: posicion actual en Y que se esta revisando en el tablero, utilizado para recorrer la matriz de la ciudad
-	sucActaul[entero]: Número de sucursales en actuales en la ciudad
+	sucActual[entero]: Número de sucursales en actuales en la ciudad
 	sucMaximas[entero]: Número maximo de sucursales posibles en la ciudad
 	colocada[entero puntero]: -en 0: guarda una bandera que se activa cuando se coloca la maxima cantidad posible de sucursales en la ciudad, permitiendo ir acabando con los llamados de la funcion 
 							  -en 1: guarda el mayor numero de sucursales  puesta hasta el momento en la ciudad
@@ -116,9 +116,7 @@ void backtracking(int* ciudad[], int* mejorCiudad[], int ejeX, int ejeY, int x, 
 				if(colocada[0]==0 && comprobar(ciudad,ejeX,ejeY,i,j)==1)
 				{
 					ciudad[i][j]=1;
-					#ifdef DEBUG
-						printCurrent(ciudad,ejeX ,ejeY);
-					#endif
+					
 					// con la nueva sucursal
 					// la ciudad actual, ¿tiene mas sucursales que la mejor ciudad hasta ahora?
 					if(sucActual+1>colocada[1])
@@ -126,6 +124,9 @@ void backtracking(int* ciudad[], int* mejorCiudad[], int ejeX, int ejeY, int x, 
 						guardar(ciudad,mejorCiudad,ejeX,ejeY);
 						colocada[1]=sucActual+1;
 					}
+					#ifdef DEBUG
+						printCurrent(ciudad,ejeX ,ejeY,sucActual+1,colocada[1]);
+					#endif
 					backtracking(ciudad,mejorCiudad,ejeX,ejeY,0,j+1,sucActual+1,sucMaximas,colocada);
 					//dado este punto se realizo el retorno, por lo tanto se eliminara la accion hecha
 					ciudad[i][j]=0;
@@ -145,6 +146,9 @@ void backtracking(int* ciudad[], int* mejorCiudad[], int ejeX, int ejeY, int x, 
 		//no hay mas opciones, por lo que se retornara desde este punto
 		colocada[0]=1;
 		guardar(ciudad,mejorCiudad,ejeX,ejeY);
+		#ifdef DEBUG
+			printCurrent(ciudad,ejeX ,ejeY,sucActual,colocada[1]);
+		#endif
 		return;
   	}
 }

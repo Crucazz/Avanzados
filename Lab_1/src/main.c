@@ -3,7 +3,7 @@
 	20.139.310-8
 	Algoritmos Avanzados
 	Laboratorio 1 Backtracking 
-	Enunciado de la ciudad y las sucursales
+	Enunciado 2:la empresa internacional kaioken express y las sucursales
 */
 
 #include <stdio.h>
