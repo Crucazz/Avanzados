@@ -44,7 +44,7 @@ void printCurrent(int* ciudad[], int ejeX, int ejeY, int sucActual, int sucMax)
     printf( VERDE_T"\t|     "AMARILLO_T"Ciudad Novigrad                                                   "VERDE_T"|\n"RESET_COLOR);
     printf( VERDE_T"\t*-----------------------------------------------------------------------*\n"RESET_COLOR);
     printf( VERDE_T"\t|                                                                       |\n"RESET_COLOR);
-    printCurrent(ciudad,ejeX ,ejeY);
+    printBoard(ciudad,ejeX ,ejeY);
     printf( VERDE_T"\t|                                                                       |\n"RESET_COLOR);
     printf( VERDE_T"\t*-----------------------------------------------------------------------*\n"RESET_COLOR);
     printf( VERDE_T"\t|    "AMARILLO_T"Sucursales en la ciudad "ROJO_T"->%d \t "AMARILLO_T"Mejor : "RESET_COLOR "%d\t   \t        "VERDE_T"|\n"RESET_COLOR,sucActual,sucMax);
