@@ -8,10 +8,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../inc/backtracking.h"
+#include "../inc/goloso.h"
 #include "../inc/debug.h"
 #include "../inc/colors.h"
-
+#include "../inc/estructuras.h"	
 
 /*
 Funcion que imprime la matriz ingresada por argumento, junto con el tamañano de esta
@@ -29,13 +29,13 @@ void printCurrent(int* ciudad[], int ejeX, int ejeY, int sucActual, int sucMax)
 
     #ifdef LINUX // preguntamos si estamos trabajando en linux
     printf( VERDE_T"\t╔═══════════════════════════════════════════════════════════════════════╗\n"RESET_COLOR);
-    printf( VERDE_T"\t║     "AMARILLO_T"Ciudad Novigrad                                                   "VERDE_T"║\n"RESET_COLOR);
+    printf( VERDE_T"\t║     "AMARILLO_T"Movimientos                                                   "VERDE_T"║\n"RESET_COLOR);
     printf( VERDE_T"\t╠═══════════════════════════════════════════════════════════════════════╣\n"RESET_COLOR);
     printf( VERDE_T"\t║                                                                       ║\n"RESET_COLOR);
     printBoard(ciudad,ejeX ,ejeY);
     printf( VERDE_T"\t║                                                                       ║\n"RESET_COLOR);
     printf( VERDE_T"\t╠═══════════════════════════════════════════════════════════════════════╣\n"RESET_COLOR);
-    printf( VERDE_T"\t║    "AMARILLO_T"Sucursales en la ciudad "ROJO_T"→ %d \t "AMARILLO_T"Mejor : "RESET_COLOR "%d\t   \t        "VERDE_T"║\n"RESET_COLOR,sucActual,sucMax);
+    printf( VERDE_T"\t║    "AMARILLO_T"Costo "ROJO_T"→ %d \t "AMARILLO_T"Mejor : "RESET_COLOR "%d\t   \t        "VERDE_T"║\n"RESET_COLOR,sucActual,sucMax);
     printf( VERDE_T"\t╚═══════════════════════════════════════════════════════════════════════╝\n"RESET_COLOR);
     #endif
 

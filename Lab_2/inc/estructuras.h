@@ -1,19 +1,20 @@
 #ifndef estructuras_h
 #define estructuras_h
 
-typedef struct acopios
-{
-    int basura;
-    int distacia;
-    int activado;
-    struct acopio * siguiente;
-}acopio;
 
-typedef struct movimientos
+typedef struct Nodos
 {
     int origen;
     int destino;
     struct movimiento * siguiente;
-}movimiento;
+}Nodo;
+
+typedef struct Movimientos
+{
+    int tamano;
+    Nodo * inicio;
+    Nodo * fin;
+
+}Movimiento;
 
 #endif

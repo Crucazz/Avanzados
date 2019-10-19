@@ -86,70 +86,13 @@ int comprobar(int* ciudad[],int ejeX,int ejeY,int x,int y)
 recursion utilizando el metodo de backtracking para ir posicionando las sucursales en la ciudad,
 
 Entrada:
-	ciudad[entero doble puntero]: matriz que representa la ciudad
-	mejorCiudad[entero doble puntero]: matriz que guardara la ciudad con mayor cantidad de sucursales
-	ejeX[entero]: Tamaño del eje X de la matriz
-	ejeY[entero]: Tamaño del eje Y de la matriz
-	x[entero]: posicion actual en X que se esta revisando en el tablero, utilizado para recorrer la matriz de la ciudad
-	y[entero]: posicion actual en Y que se esta revisando en el tablero, utilizado para recorrer la matriz de la ciudad
-	sucActual[entero]: Número de sucursales en actuales en la ciudad
-	sucMaximas[entero]: Número maximo de sucursales posibles en la ciudad
-	colocada[entero puntero]: -en 0: guarda una bandera que se activa cuando se coloca la maxima cantidad posible de sucursales en la ciudad, permitiendo ir acabando con los llamados de la funcion 
-							  -en 1: guarda el mayor numero de sucursales  puesta hasta el momento en la ciudad
+
 
 Salida:-----
-O(n^n)	
+O(n)	
 */
-void backtracking()
+float goloso()
 {
-	int ok = 0;
 
-	if(colocada[0]==1)
-		return;
 
-	if(sucActual != sucMaximas)
-	{
-		for(int j=y; j<ejeY; j++)
-		{
-			for(int i=x; i<ejeX; i++)
-			{
-				//¿es posible colocar la sucursal?
-				if(colocada[0]==0 && comprobar(ciudad,ejeX,ejeY,i,j)==1)
-				{
-					ciudad[i][j]=1;
-					
-					// con la nueva sucursal
-					// la ciudad actual, ¿tiene mas sucursales que la mejor ciudad hasta ahora?
-					if(sucActual+1>colocada[1])
-					{
-						guardar(ciudad,mejorCiudad,ejeX,ejeY);
-						colocada[1]=sucActual+1;
-					}
-					#ifdef DEBUG
-						printCurrent(ciudad,ejeX ,ejeY,sucActual+1,colocada[1]);
-					#endif
-					backtracking(ciudad,mejorCiudad,ejeX,ejeY,0,j+1,sucActual+1,sucMaximas,colocada);
-					//dado este punto se realizo el retorno, por lo tanto se eliminara la accion hecha
-					ciudad[i][j]=0;
-
-				}
-				//en caso de que se encontrara la solucion
-				//empezara a cortar las recursiones.
-				if(colocada[0]==1)
-					return;				
-			}
-		}
-
-	} 
-	else
-	{
-    	// Se colocan el maximo de sucursales en la ciudad
-		//no hay mas opciones, por lo que se retornara desde este punto
-		colocada[0]=1;
-		guardar(ciudad,mejorCiudad,ejeX,ejeY);
-		#ifdef DEBUG
-			printCurrent(ciudad,ejeX ,ejeY,sucActual,colocada[1]);
-		#endif
-		return;
-  	}
 }
