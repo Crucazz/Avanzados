@@ -82,6 +82,11 @@ int comprobar(int* ciudad[],int ejeX,int ejeY,int x,int y)
 }
 
 
+int* minimo(int* acopios[], int cantAcop);
+{
+	for(int i=0; )
+}
+
 /*
 recursion utilizando el metodo de backtracking para ir posicionando las sucursales en la ciudad,
 
@@ -91,8 +96,11 @@ Entrada:
 Salida:-----
 O(n)	
 */
-float goloso()
+float goloso(int * acopios[],Movimiento movimientos,int subsidio,int cantAcop,int cantActivos)
 {
 
-
+	int min[2];
+	min=minimo(acopios, cantAcop);
+	printf("inicio %d - Fin %d \n",min[0], min[1]);
+	return (0.0);
 }

@@ -12,5 +12,5 @@
 
 void guardar(int* ciudad[], int* mejorCiudad[] ,int ejeX,int ejeY);
 int minimaDistancia(int* ciudad[],int ejeX,int ejeY,int x,int y);
-void goloso();
+float goloso(int * acopios[],Movimiento movimientos,int subsidio,int cantAcop,int cantActivos);
 #endif

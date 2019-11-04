@@ -17,4 +17,7 @@ typedef struct Movimientos
 
 }Movimiento;
 
+void iniciarMov(Movimiento * mov);
+void anadirNodo(Movimiento * movimiento, int origen, int destino );
+
 #endif

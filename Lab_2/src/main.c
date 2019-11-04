@@ -58,8 +58,10 @@ int main (int argc, char *argv[])
 	}
 
 	Movimientos * movimientos;
+	iniciarMov(movimientos);
 	//recursion utilizando backtracking	
     costos=goloso(acopios, movimientos, subsidio, cantAcop, cantActivos);
+    printf("Costo %f \n",costos );
 
 /*
     //escritura del archivo de salida
